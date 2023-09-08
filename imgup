@@ -111,9 +111,24 @@ def process_and_upload(filepath: str):
     return imgur_link
 
 
+def from_clipboard():
+    logging.debug('grabbing image from clipboard')
+    from PIL import ImageGrab, Image
+    img = ImageGrab.grabclipboard()
+    if img == None:
+        raise RuntimeError("no image from clipboard")
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        img_path = os.path.join(tmpdirname, f'img.{img.format}')
+        img.save(img_path)
+        return process_and_upload(img_path)
+
+
 def main(filepaths: Annotated[List[str], typer.Argument()]):
     logging.basicConfig(level=logging.DEBUG)
-    imgur_links = [process_and_upload(path) for path in filepaths]
+    if filepaths == ['paste']:
+        imgur_links = [from_clipboard()]
+    else:
+        imgur_links = [process_and_upload(path) for path in filepaths]
     for url in imgur_links:
         print(url)
 

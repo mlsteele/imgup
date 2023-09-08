@@ -15,7 +15,14 @@ pip install -r requirements.txt
 ```
 
 ## Usage
+Upload from files
 ```
 ./imgup ~/Downloads/IMG_1038.HEIC ~/Downloads/IMG_1039.HEIC
+https://i.imgur.com/2Hijmxq.jpg
+```
+
+Upload from the clipboard
+```
+./imgup paste
 https://i.imgur.com/2Hijmxq.jpg
 ```
