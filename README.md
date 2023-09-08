@@ -17,4 +17,5 @@ pip install -r requirements.txt
 ## Usage
 ```
 ./imgup ~/Downloads/IMG_1038.HEIC ~/Downloads/IMG_1039.HEIC
+https://i.imgur.com/2Hijmxq.jpg
 ```
